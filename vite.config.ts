@@ -7,7 +7,7 @@ import {VitePWA} from 'vite-plugin-pwa'
 export default defineConfig({
     base: '/$SHORT_NAME',
     test: {
-        environment: "node",
+        environment: "jsdom",
     },
     plugins: [
         preact(),
