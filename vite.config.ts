@@ -5,7 +5,7 @@ import {VitePWA} from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/$SHORT_NAME',
+    base: '/lost-cities',
     test: {
         environment: "jsdom",
     },
@@ -14,9 +14,9 @@ export default defineConfig({
         VitePWA({
             registerType: 'autoUpdate',
             manifest: {
-                name: "$NAME",
-                short_name: '$SHORT_NAME',
-                description: "$NAME",
+                name: "lost-cities",
+                short_name: 'lost-cities',
+                description: "lost-cities",
                 theme_color: "#FFFFE0",
                 icons: [{
                     src: "pwa-64x64.png",
