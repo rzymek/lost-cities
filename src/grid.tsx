@@ -21,7 +21,7 @@ export function Grid() {
         <div className="grid-container">
             {cells.map((cellNumber) => {
                     const colorIndex = 
-                    const expedition = colors[reverse ? colors.length-1 - colorIndex:colorIndex;
+                    const expedition = colors[reverse ? colors.length-1 - colorIndex:colorIndex];
                     const cardIndex = Math.ceil(cellNumber / 5) - 1
                     return <GridButton key={cellNumber}
                                        cardIndex={cardIndex}
