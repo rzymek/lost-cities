@@ -40,7 +40,7 @@ export function Grid() {
                 <GridValue key={idx} value={result}/>)}
         </div>
         <h1>{total}</h1>
-        <button onClick={()=>setReverse(v=>!v)}>⟳</button>
+        <h1><button onClick={()=>setReverse(v=>!v)}>⟳</button></h1>
     </>;
 }
 
