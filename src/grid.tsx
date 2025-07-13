@@ -9,6 +9,7 @@ export type State = Record<Expedition, Record<number, boolean>>;
 
 export function Grid() {
     const totalCells = 12 * 5;
+    const [reverse, setReverse]=useState(false);
     const cells = Array.from({length: totalCells}, (_, i) => i + 1);
     const [selected, setSelected] = useState(colors.reduce((acc, it) => ({
         ...acc,
@@ -38,6 +39,7 @@ export function Grid() {
                 <GridValue key={idx} value={result}/>)}
         </div>
         <h1>{total}</h1>
+        <button onClick={()=>setReverse(v=>!v)}>⟳</button>
     </>;
 }
 
