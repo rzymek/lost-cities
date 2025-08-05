@@ -1,10 +1,10 @@
 import {State} from "./grid.tsx";
 import {values} from "./values.tsx";
 
-export type Result = (number|string)[];
+export type Result = ReturnType<typeof calculateResults>[number];
 export type Results = Result[];
 
-export function calculateResults(selected: State): Results {
+export function calculateResults(selected: State) {
     return Object.values(selected).map((cards) => {
         const selectedCards = Object.entries(cards)
             .filter(([, selected]) => selected)
@@ -15,12 +15,12 @@ export function calculateResults(selected: State): Results {
         const sponsors = selectedCards.filter(card => card === 'x2').length + 1;
         const greatExpedition = selectedCards.length >= 8;
         const total = (expeditionCards + expeditionCost) * sponsors + (greatExpedition ? 20 : 0);
-        return [
+        return {
             total,
             expeditionCards,
             expeditionCost,
-            sponsors > 1 ? `x${sponsors}` : '',
-            greatExpedition ? '+20' : '',
-        ];
+            sponsors,
+            greatExpedition,
+        };
     });
 }

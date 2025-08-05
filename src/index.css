@@ -12,3 +12,24 @@ body {
     margin: 0;
     padding: 0;
 }
+
+table{
+    /*width: 90%;*/
+    border-collapse: collapse;
+    margin: auto;
+}
+table td,th {
+    word-wrap: break-word;
+    min-width: 1cm;
+}
+table td {
+    text-align: center;
+}
+table th {
+    text-align: left;
+    font-weight: normal;
+    padding: 0 2mm;
+}
+table td,th {
+    border: solid 1px gray;
+}
