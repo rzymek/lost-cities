@@ -4,12 +4,12 @@
      * Defines 5 columns, each taking up an equal fraction of the available space,
      * but limited by the minmax function to be at most 1cm.
      */
-    grid-template-columns: repeat(5, minmax(0, 1cm));
+    grid-template-columns: repeat(5, minmax(0, 12mm));
     /*
      * Defines 12 rows, each taking up an equal fraction of the available space,
      * but limited by the minmax function to be at most 1cm.
      */
-    grid-template-rows: repeat(auto-fill, minmax(0, 1cm));
+    grid-template-rows: repeat(auto-fill, minmax(0, 12mm));
 
     /* Optional: Add a gap between grid items */
     gap: 1mm; /* Adjust as needed, e.g., 2px */
@@ -22,8 +22,7 @@
 }
 
 .grid-item {
-    width: 1cm; /* Ensure explicit width */
-    height: 1cm; /* Ensure explicit height */
+    height: 12mm;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +30,7 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
     border-radius: 1mm;
     background-color: #f0f0f0;
-    font-size: 0.8em;
+    font-size: 0.9em;
     text-align: center;
 }
 

@@ -35,7 +35,7 @@ function MileStoleSelect() {
             </GridButton>
             <GridButton color={neutralColor} style={{
                 gridColumn: "span 2",
-                fontSize: '60%',
+                fontSize: '65%',
                 padding: '1mm',
             }}>
                 3 karty o kolejnych wartościach
