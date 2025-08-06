@@ -9,7 +9,7 @@
      * Defines 12 rows, each taking up an equal fraction of the available space,
      * but limited by the minmax function to be at most 1cm.
      */
-    grid-template-rows: repeat(12, minmax(0, 1cm));
+    grid-template-rows: repeat(auto-fill, minmax(0, 1cm));
 
     /* Optional: Add a gap between grid items */
     gap: 1mm; /* Adjust as needed, e.g., 2px */
