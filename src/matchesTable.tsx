@@ -2,7 +2,7 @@ import {state} from "./state.tsx"
 import {PlayerName} from "./PlayerName.tsx"
 import {update} from "./update.ts"
 import {calculateResults, total} from "./calculateResults.tsx"
-import {flatMap, pipe, values} from "remeda"
+import {filter, flatMap, pipe, sum, values} from "remeda"
 
 function isAnyExpeditionCardSelected(player: typeof state.players[0], matchIndex: number): boolean {
     return pipe(
@@ -14,6 +14,14 @@ function isAnyExpeditionCardSelected(player: typeof state.players[0], matchIndex
 }
 
 export function MatchesTable() {
+    const results = state.players[0].matches
+        .map((_, matchIndex) =>
+            state.players.map((player) =>
+                isAnyExpeditionCardSelected(player, matchIndex)
+                    ? total(calculateResults(player.matches[matchIndex].expeditions))
+                    : NaN,
+            ),
+        )
     return <table style={{width: "auto", borderCollapse: "collapse", margin: "5mm", whiteSpace: "nowrap"}}>
         <tbody>
         <tr>
@@ -26,10 +34,10 @@ export function MatchesTable() {
                                 })}/>
                 </th>)}
         </tr>
-        {state.players[0].matches.map((_, matchIndex) =>
+        {results.map((result, matchIndex) =>
             <tr key={matchIndex}>
                 <th>Rozgrywka {matchIndex + 1}</th>
-                {state.players.map((player, playerIndex) =>
+                {result.map((total, playerIndex) =>
                     <td key={playerIndex}
                         onClick={update(() => {
                             state.selectedPlayer = playerIndex
@@ -41,18 +49,20 @@ export function MatchesTable() {
                             cursor: "pointer",
                             height: "1cm",
                         }}>
-                        {isAnyExpeditionCardSelected(player, matchIndex)
-                            ? total(calculateResults(player.matches[matchIndex].expeditions))
-                            : ""}
+                        {isFinite(total) ? total : ""}
                     </td>,
                 )}
             </tr>)}
         <tr>
             <th>Suma</th>
-            {state.players.map((_, playerIndex) =>
-                <td key={playerIndex} style={{padding: 0, height: "8mm"}}>
-                    {0}
-                </td>,
+            {state.players.map((_, playerIndex) => {
+                    const matchTotals = results.map(playerMatches => playerMatches[playerIndex])
+                    return <td key={playerIndex} style={{padding: 0, height: "8mm"}}>{
+                        matchTotals.some(isFinite)
+                            ? pipe(matchTotals, filter(isFinite), sum)
+                            : ""
+                    }</td>
+                },
             )}
         </tr>
         </tbody>
