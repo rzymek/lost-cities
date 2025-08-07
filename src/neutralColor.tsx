@@ -1,0 +1,1 @@
+export const neutralColor = "#dab184"

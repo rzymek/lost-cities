@@ -1,7 +1,20 @@
-import './app.css'
-import {Grid} from "./grid.tsx";
+import "./app.css"
+import {Grid} from "./grid.tsx"
+import {state} from "./state.tsx"
+import {MilestoneSelect} from "./milestoneSelect.tsx"
+import {ScoringTable} from "./scoringTable.tsx"
+import {ExpansionCheckbox} from "./expansionCheckbox.tsx"
+import {NewGame} from "./newGame.tsx"
+import {MatchesTable} from "./matchesTable.tsx"
 
 export function App() {
-    return <Grid/>
+    return <div>
+        <Grid/>
+        <ExpansionCheckbox/>
+        {state.milestonesExpansion && <MilestoneSelect/>}
+        <ScoringTable/>
+        <MatchesTable/>
+        <NewGame/>
+    </div>
 }
 
