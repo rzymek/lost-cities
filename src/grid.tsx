@@ -9,7 +9,7 @@ export type PlayerState = Record<Expedition, Record<number, boolean>>;
 
 export function Grid() {
     const totalCells = 12 * 5
-    const reverse = false
+    const reverse = state.selectedPlayer === 1;
     const cells = Array.from({length: totalCells}, (_, i) => i + 1)
     return <>
         <div className="grid-container">
